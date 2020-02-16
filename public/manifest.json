@@ -1,0 +1,10 @@
+{
+  "name": "Emojinfo",
+  "short_name": "Emojinfo",
+  "theme_color": "#3636a8",
+  "background_color": "#ff1180",
+  "display": "standalone",
+  "Scope": "/",
+  "start_url": "/index.html",
+  "splash_pages": null
+}

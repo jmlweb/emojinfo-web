@@ -51,7 +51,7 @@
       }
 </script>
 
-<button on:click="{efc}" class:open="{$menuOpen}">
+<button on:click="{efc}" class:open="{$menuOpen}" aria-label="Toggle menu">
   <svg
     width="18"
     height="18"

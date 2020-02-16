@@ -16,8 +16,8 @@
     class="input"
     type="text"
     placeholder="Search emoji"
-    disabled="{$isLoading}" bind:value />
-  <button class="button" class:loading="{$isLoading}" on:click={doSearch}>
+    disabled="{$isLoading}" bind:value aria-label="Search emoji" />
+  <button class="button" class:loading="{$isLoading}" on:click={doSearch} aria-label="Do search">
     <SearchIcon />
   </button>
 </form>

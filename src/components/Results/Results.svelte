@@ -6,17 +6,39 @@
   import ResultsItem from './ResultsItem.svelte'
   import ResultsSelected from './ResultsSelected.svelte'
 
-  const { gender, mode, tone, emojiSize } = getContext('appState')
-  export let data
+  const { gender, data, mode, tone, emojiSize, keyword } = getContext('appState')
 
   $: factor = $emojiSize / 60
   $: gridItemSize = $emojiSize * (2.5 - factor)
+  $: results = $data.reduce(
+    (acc, group) => acc + group.subgroups.reduce(
+      (subAcc, subgroup) => {
+        if (!subgroup.items) {
+          return subAcc;
+        }
+        return subAcc + subgroup.items.length;
+      },
+      0
+    ), 0);
+
+  const resetSearch = () => {
+    $keyword = '';
+  }
 </script>
+
+{#if $keyword.length}
+  <div class="results-header">
+    <p>
+      <strong>{results}</strong> results for <strong>{$keyword}</strong>
+      <button type="button" on:click={resetSearch}><span class="clear">❌</span> clear</button>
+    </p>
+  </div>
+{/if}
 
 <div
   class="grid"
   style="grid-template-columns: repeat(auto-fill, minmax({gridItemSize}px, 1fr))">
-  {#each data as group}
+  {#each $data as group}
     {#if $mode !== 'simple' && group.subgroups.filter(x => x.items).length > 0}
       <h2 in:fade>{parseName(group.name)}</h2>
     {/if}
@@ -44,6 +66,11 @@
       --grid-gap: 10px;
     }
   }
+
+  .results-header {
+    padding: var(--grid-gap) 24px;
+  }
+
   .grid {
     display: grid;
     margin: 0;
@@ -78,5 +105,44 @@
 
   h2 + h3 {
     margin-top: 4px;
+  }
+
+  .results-header {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & button {
+      background: linear-gradient(145deg, #e3e5e5, #ffffff);
+      border: 0;
+      box-shadow: 7px 7px 13px #cfd0d0, -7px -7px 13px #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transform-origin: 50% 50%;
+      transition: transform 0.2s;
+      outline: 0;
+      margin-left: 8px;
+      font-size: 18px;
+      padding: 12px;
+      color: #7b7b7b;
+
+      &:hover {
+        background: linear-gradient(145deg, #ffffff, #e3e5e5);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  .clear {
+    font-family: initial;
+    font-size: 13px;
+    margin-right: 4px;
   }
 </style>

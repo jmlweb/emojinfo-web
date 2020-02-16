@@ -28,7 +28,7 @@
     {#if $isLoading}
       <Preloader />
     {:else}
-      <Results data="{$data}" />
+      <Results />
     {/if}
   </div>
   <div slot="footer">

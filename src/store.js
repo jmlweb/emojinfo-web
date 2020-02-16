@@ -1,5 +1,15 @@
 import { derived, writable, readable } from 'svelte/store'
-import { includes, filter, join, pipe, prop } from 'rambda'
+import {
+  either,
+  includes,
+  filter,
+  join,
+  map,
+  pipe,
+  prop,
+  toLower,
+  trim,
+} from 'rambda'
 
 import GENDERS from './constants/genders'
 import MODES from './constants/modes'
@@ -82,9 +92,18 @@ const filteredEmojiList = derived(
     if (!$keyword) {
       set($emojiList)
     } else {
+      const cleanKeyword = trim($keyword.toLowerCase())
       set(
         filter(
-          pipe(prop('shortcodes'), join(', '), includes($keyword)),
+          either(
+            pipe(
+              prop('shortcodes'),
+              map(toLower),
+              join(', '),
+              includes(cleanKeyword)
+            ),
+            pipe(prop('name'), toLower, includes(cleanKeyword))
+          ),
           $emojiList
         )
       )
@@ -99,7 +118,9 @@ export let data = derived(
   }
 )
 
-export const isLoading = derived(data, ($data, set) => set(!$data.length))
+export const isLoading = derived([data, keyword], ([$data, $keyword], set) =>
+  set(!$data.length && $keyword.length === 0)
+)
 export const selectedEmojiData = derived(
   [emojiList, selectedEmoji],
   ([$emojiList, $selectedEmoji], set) => {

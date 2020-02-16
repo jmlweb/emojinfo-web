@@ -70,6 +70,7 @@ export default {
   watch: {
     clearScreen: false,
   },
+  experimentalOptimizeChunks: true,
 }
 
 function serve() {

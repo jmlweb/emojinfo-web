@@ -1,6 +1,13 @@
 {
-  "name": "svelte-app",
+  "name": "emojinfo-web",
+  "description": "Emoji finder using Svelte and emojibase",
+  "author": "José Manuel Lucas <josemanuel@jmlweb.es>",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmlweb/emojinfo-web"
+  },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",

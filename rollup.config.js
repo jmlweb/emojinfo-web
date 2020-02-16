@@ -6,7 +6,6 @@ import { terser } from 'rollup-plugin-terser'
 import svg from 'rollup-plugin-svg-import'
 import replace from '@rollup/plugin-replace'
 import autoPreprocess from 'svelte-preprocess'
-import css from 'rollup-plugin-css-only'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -62,7 +61,6 @@ export default {
     !production &&
       livereload({
         watch: 'public',
-        port: 36702,
       }),
 
     // If we're building for production (npm run build

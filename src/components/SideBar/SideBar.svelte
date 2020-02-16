@@ -30,7 +30,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(5, 35, 63, 0.7);
+    background-color: rgba(25, 18, 87, 0.7);
   }
   aside {
     background: linear-gradient(180deg, #f4f5f5 0%, #f0f2f4 100%);

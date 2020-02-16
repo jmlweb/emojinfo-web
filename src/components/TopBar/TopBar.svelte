@@ -20,7 +20,7 @@
     grid-template-columns: 1fr auto;
     grid-gap: 8px 16px;
     padding: 16px 24px;
-    box-shadow: 0 3px 32px rgba(5, 35, 63, 0.4), 0 1px 12px rgba(5, 35, 63, 0.2);
+    box-shadow: 0 3px 32px rgba(25, 18, 87, 0.4), 0 1px 12px rgba(5, 35, 63, 0.2);
     background-color: var(--color-primary);
   }
 

@@ -19,6 +19,7 @@
 {#if skinnedData}
 <div class="main" transition:fade>
   <div class="overlay" transition:fade on:click={resetSelectedEmoji}></div>
+  <p class="close"><button type="button" on:click={resetSelectedEmoji}>Close</button></p>
   <div class="content">
     <header>
       <div class="emoji">
@@ -74,7 +75,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(5, 35, 63, 0.8);
+    background: rgba(25, 18, 87, 0.98);
   }
 
   .main {
@@ -84,16 +85,20 @@
     bottom: 0;
     right: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 50;
+    z-index: 10000;
+  }
+
+  .content, .close {
+    width: 440px;
+    max-width: 90%;
+    position: relative;
   }
 
   .content {
-    width: 440px;
-    max-width: 100%;
     background: #fff;
-    position: relative;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 3px 12px rgba(5, 35, 63, 1), 0 12px 42px rgba(0, 0, 0, 0.6);
@@ -135,5 +140,18 @@
     font-weight: 600;
     color: var(--color-pink-4);
     text-align: right;
+  }
+
+  .close {
+    margin: 6px 0;
+    text-align: right;
+    & button {
+      color: #fff;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 600;
+      background-color: transparent;
+      border: 0;
+    }
   }
 </style>

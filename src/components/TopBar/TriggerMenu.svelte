@@ -97,7 +97,7 @@
     display: flex;
     align-items: center;
     border-radius: 50%;
-    box-shadow: 1px 3px 12px rgba(5, 35, 63, 0.3);
+    box-shadow: 1px 3px 12px rgba(25, 18, 87, 0.3);
     transition: transform 0.2s, background-color 0.6s;
   }
 

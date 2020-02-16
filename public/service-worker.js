@@ -1,10 +1,10 @@
-var cacheName = 'sgtoilet-cache-' + Date.now()
+var cacheName = 'emojinfo-cache-1'
 var filesToCache = [
   '/',
   '/index.html',
   '/global.css',
-  '/build/bundle.css',
-  '/build/bundle.js',
+  '/dist/bundle.css',
+  '/dist/bundle.js',
 ]
 self.addEventListener('install', function(e) {
   e.waitUntil(

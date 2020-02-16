@@ -15,7 +15,7 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'public/build/bundle.js',
+    file: 'public/dist/bundle.js',
   },
   plugins: [
     replace({
@@ -35,10 +35,10 @@ export default {
         postcss: true,
       }),
       css: css => {
-        css.write('public/build/bundle.css')
+        css.write('public/dist/bundle.css')
       },
     }),
-    // css({ output: 'public/build/other.css' }),
+    // css({ output: 'public/dist/other.css' }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In

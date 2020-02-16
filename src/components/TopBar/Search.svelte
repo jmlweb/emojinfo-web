@@ -26,8 +26,8 @@
   .box {
     width: 100%;
     position: relative;
-    box-shadow: 2px 2px 12px rgba(5, 35, 63, 0.08),
-      1px 1px 4px rgba(5, 35, 63, 0.08);
+    box-shadow: 2px 2px 12px rgba(25, 18, 87, 0.08),
+      1px 1px 4px rgba(25, 18, 87, 0.08);
   }
 
   .input {

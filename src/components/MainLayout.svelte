@@ -9,6 +9,7 @@
   <main class:loading={$isLoading}>
     <slot name="body"></slot>
   </main>
+  <slot name="footer"></slot>
 </div>
 
 <style>

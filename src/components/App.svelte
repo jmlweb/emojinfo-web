@@ -8,6 +8,7 @@
   import Results from "./Results/Results.svelte"
   import SideBar from "./SideBar/SideBar.svelte"
   import Preloader from './Preloader.svelte'
+  import Footer from './Footer.svelte';
 
   const toggleMenu = () => {
     menuOpen.set(!$menuOpen)
@@ -29,6 +30,9 @@
     {:else}
       <Results data="{$data}" />
     {/if}
+  </div>
+  <div slot="footer">
+    <Footer />
   </div>
 </MainLayout>
 <SideBar />

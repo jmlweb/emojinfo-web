@@ -1,5 +1,5 @@
 import { derived, writable, readable } from 'svelte/store'
-import { assoc, includes, filter, join, map, pipe, prop } from 'rambda'
+import { includes, filter, join, pipe, prop } from 'rambda'
 
 import GENDERS from './constants/genders'
 import MODES from './constants/modes'

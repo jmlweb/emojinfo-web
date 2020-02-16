@@ -26,7 +26,7 @@
 
   .logo {
     margin: 0;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--color-blue-1);
     font-weight: 400;
   }

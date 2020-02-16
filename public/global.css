@@ -6,8 +6,6 @@
 	 */
   --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  /* --font-secondary: 'Bree serif', serif; */
-  --font-secondary: var(--font-primary);
   /**
 	 ************************************************************************
 	 * COLORS

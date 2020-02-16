@@ -62,7 +62,7 @@
 
   h2 {
     margin: 24px 0 0;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--color-blue-9);
     font-size: 24px;
     &:first-child {

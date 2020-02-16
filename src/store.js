@@ -1,7 +1,8 @@
 import { derived, writable, readable } from 'svelte/store'
 import {
-  either,
+  anyPass,
   includes,
+  equals,
   filter,
   join,
   map,
@@ -95,15 +96,16 @@ const filteredEmojiList = derived(
       const cleanKeyword = trim($keyword.toLowerCase())
       set(
         filter(
-          either(
+          anyPass([
+            pipe(prop('emoji'), equals(cleanKeyword)),
             pipe(
               prop('shortcodes'),
               map(toLower),
               join(', '),
               includes(cleanKeyword)
             ),
-            pipe(prop('name'), toLower, includes(cleanKeyword))
-          ),
+            pipe(prop('name'), toLower, includes(cleanKeyword)),
+          ]),
           $emojiList
         )
       )

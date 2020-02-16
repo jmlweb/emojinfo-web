@@ -89,6 +89,7 @@
     justify-content: center;
     align-items: center;
     z-index: 10000;
+    overflow: auto;
   }
 
   .content, .close {
@@ -102,6 +103,9 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 3px 12px rgba(5, 35, 63, 1), 0 12px 42px rgba(0, 0, 0, 0.6);
+    max-height: 100%;
+    overflow: auto;
+    margin-bottom: 20px;
   }
 
   header {
@@ -143,7 +147,7 @@
   }
 
   .close {
-    margin: 6px 0;
+    margin: 16px 0 6;
     text-align: right;
     & button {
       color: #fff;

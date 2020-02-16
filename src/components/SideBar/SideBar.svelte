@@ -47,10 +47,9 @@
     padding-top: 50px;
     display: flex;
     flex-direction: column;
-
     box-shadow: -6px 0 40px rgba(0, 0, 0, 0.3), -1px 0px 2px rgba(0, 0, 0, 0.4);
-
     transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    overflow: auto;
   }
 
   .menuOpen {

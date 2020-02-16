@@ -104,6 +104,12 @@ const filteredEmojiList = derived(
               join(', '),
               includes(cleanKeyword)
             ),
+            pipe(
+              prop('tags'),
+              map(toLower),
+              join(', '),
+              includes(cleanKeyword)
+            ),
             pipe(prop('name'), toLower, includes(cleanKeyword)),
           ]),
           $emojiList

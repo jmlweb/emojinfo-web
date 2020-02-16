@@ -63,6 +63,10 @@
 </div>
 {/if}
 
+<svelte:head>
+  <title>{skinnedData.name} | Emojinfo</title>
+</svelte:head>
+
 <style>
   .overlay {
     position: fixed;

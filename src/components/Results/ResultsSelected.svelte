@@ -64,7 +64,7 @@
 {/if}
 
 <svelte:head>
-  <title>{skinnedData ? `${skinnedData.name} | ` : ''}Emojinfo</title>
+  <title>{skinnedData ? `${skinnedData.emoji} ${skinnedData.name} | ` : ''}Emojinfo</title>
 </svelte:head>
 
 <style>

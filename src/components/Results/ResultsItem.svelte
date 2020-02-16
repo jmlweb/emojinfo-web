@@ -18,7 +18,7 @@ import { getContext } from 'svelte'
         .join(', ');
 </script>
 
-<li class="item" transition:fade>
+<div class="item" transition:fade>
   <button
     on:click={() => selectedEmoji.set(data.emoji)}
     class="emoji"
@@ -26,7 +26,7 @@ import { getContext } from 'svelte'
     style="font-size: {emojiSize}px; height: {buttonHeight}px">
     {skinnedData.emoji}
   </button>
-</li>
+</div>
 
 <style>
   .item {

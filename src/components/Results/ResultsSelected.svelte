@@ -4,68 +4,84 @@
   import ToneSelector from './ToneSelector.svelte'
   import Clipboard from './Clipboard.svelte'
 
-  const { selectedEmoji, selectedEmojiData, groups, subgroups, tone } = getContext('appState')
+  const {
+    selectedEmoji,
+    selectedEmojiData,
+    groups,
+    subgroups,
+    tone,
+  } = getContext('appState')
 
   const resetSelectedEmoji = () => {
     selectedEmoji.set(null)
   }
 
-  $: skinnedData = (!$tone || !$selectedEmojiData || !$selectedEmojiData.skins) ? $selectedEmojiData : $selectedEmojiData.skins[$tone - 1];
+  $: skinnedData =
+    !$tone || !$selectedEmojiData || !$selectedEmojiData.skins
+      ? $selectedEmojiData
+      : $selectedEmojiData.skins[$tone - 1]
 
   $: parsedGroup = skinnedData && $groups ? $groups[skinnedData.group] : ''
-  $: parsedSubgroup = skinnedData && $subgroups ? $subgroups[skinnedData.subgroup] : ''
+  $: parsedSubgroup =
+    skinnedData && $subgroups ? $subgroups[skinnedData.subgroup] : ''
 </script>
 
 {#if skinnedData}
-<div class="main" transition:fade>
-  <div class="overlay" transition:fade on:click={resetSelectedEmoji}></div>
-  <p class="close"><button type="button" on:click={resetSelectedEmoji}>Close</button></p>
-  <div class="content">
-    <header>
-      <div class="emoji">
-        {skinnedData.emoji}
-      </div>
-      <h1>{skinnedData.annotation}</h1>
-    </header>
-    <dl transition:fade>
-      {#if $selectedEmojiData.skins}
-        <dt>Tone</dt>
-        <dd><ToneSelector /></dd>
-      {/if}
-      <dt>Name:</dt>
-      <dd>{skinnedData.name}</dd>
-      <dt>Hex Code:</dt>
-      <dd>{skinnedData.hexcode}</dd>
-      <dt>Shortcodes:</dt>
-      <dd>{skinnedData.shortcodes.map(x => `:${x}:`).join(', ')}</dd>
-      <dt>Tags:</dt>
-      <dd>{$selectedEmojiData.tags.join(', ')}</dd>
-      {#if skinnedData.text}
-        <dt>Text:</dt>
-        <dd>{skinnedData.text}</dd>
-      {/if}
-      <dt>Type:</dt>
-      <dd>{skinnedData.type === 0 ? 'text' : 'emoji'}</dd>
-      <dt>Order:</dt>
-      <dd>{$selectedEmojiData.order}</dd>
-      <dt>Group:</dt>
-      <dd>{parsedGroup}</dd>
-      <dt>Subgroup:</dt>
-      <dd>{parsedSubgroup}</dd>
-      <dt>Version:</dt>
-      <dd>{$selectedEmojiData.version}</dd>
-      {#if $selectedEmojiData.emoticon}
-        <dt>Emoticon:</dt>
-        <dd>{$selectedEmojiData.emoticon}</dd>
-      {/if}
-    </dl>
-    <Clipboard value={skinnedData.emoji} onCopy={resetSelectedEmoji} />
+  <div class="main" transition:fade>
+    <div class="overlay" transition:fade on:click="{resetSelectedEmoji}"></div>
+    <p class="close">
+      <button type="button" on:click="{resetSelectedEmoji}">Close</button>
+    </p>
+    <div class="content">
+      <header>
+        <div class="emoji">{skinnedData.emoji}</div>
+        <h1>{skinnedData.annotation}</h1>
+      </header>
+      <dl transition:fade>
+        {#if $selectedEmojiData.skins}
+          <dt>Tone</dt>
+          <dd>
+            <ToneSelector />
+          </dd>
+        {/if}
+        <dt>Name:</dt>
+        <dd>{skinnedData.name}</dd>
+        <dt>Hex Code:</dt>
+        <dd>{skinnedData.hexcode}</dd>
+        <dt>Shortcodes:</dt>
+        <dd>
+          {(skinnedData.shortcodes || []).map((x) => `:${x}:`).join(', ')}
+        </dd>
+        <dt>Tags:</dt>
+        <dd>{$selectedEmojiData.tags.join(', ')}</dd>
+        {#if skinnedData.text}
+          <dt>Text:</dt>
+          <dd>{skinnedData.text}</dd>
+        {/if}
+        <dt>Type:</dt>
+        <dd>{skinnedData.type === 0 ? 'text' : 'emoji'}</dd>
+        <dt>Order:</dt>
+        <dd>{$selectedEmojiData.order}</dd>
+        <dt>Group:</dt>
+        <dd>{parsedGroup}</dd>
+        <dt>Subgroup:</dt>
+        <dd>{parsedSubgroup}</dd>
+        <dt>Version:</dt>
+        <dd>{$selectedEmojiData.version}</dd>
+        {#if $selectedEmojiData.emoticon}
+          <dt>Emoticon:</dt>
+          <dd>{$selectedEmojiData.emoticon}</dd>
+        {/if}
+      </dl>
+      <Clipboard value="{skinnedData.emoji}" onCopy="{resetSelectedEmoji}" />
+    </div>
   </div>
-</div>
 {/if}
 
 <svelte:head>
-  <title>{skinnedData ? `${skinnedData.emoji} ${skinnedData.name} | ` : ''}Emojinfo</title>
+  <title>
+    {skinnedData ? `${skinnedData.emoji} ${skinnedData.name} | ` : ''}Emojinfo
+  </title>
 </svelte:head>
 
 <style>
@@ -92,7 +108,8 @@
     overflow: auto;
   }
 
-  .content, .close {
+  .content,
+  .close {
     width: 440px;
     max-width: 90%;
     position: relative;

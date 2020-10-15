@@ -17,7 +17,7 @@ import MODES from './constants/modes'
 import emojiService from './services/emojiService'
 import generateData from './utils/generateData'
 
-const setLocalItemIfNeeded = key => val => {
+const setLocalItemIfNeeded = (key) => (val) => {
   if (val) {
     localStorage.setItem(key, val)
   }
@@ -57,8 +57,15 @@ export let selectedEmoji = writable(null)
 /**
  * DATA
  */
-const sourceData = readable(null, set => {
-  emojiService.fetch().then(set)
+const sourceData = readable(null, (set) => {
+  emojiService
+    .fetch()
+    .then((x) => {
+      return set(x)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
 })
 
 const metadata = derived(sourceData, ($sourceData, set) => {
@@ -90,6 +97,7 @@ const emojiList = derived(sourceData, ($sourceData, set) => {
 const filteredEmojiList = derived(
   [emojiList, keyword],
   ([$emojiList, $keyword], set) => {
+    console.log($emojiList)
     if (!$keyword) {
       set($emojiList)
     } else {
@@ -135,7 +143,7 @@ export const selectedEmojiData = derived(
     if (!$selectedEmoji) {
       set(null)
     } else {
-      const found = $emojiList.find(x => x.emoji === $selectedEmoji)
+      const found = $emojiList.find((x) => x.emoji === $selectedEmoji)
       if (found) {
         set(found)
       }

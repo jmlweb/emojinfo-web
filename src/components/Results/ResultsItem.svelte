@@ -1,28 +1,26 @@
 <script>
-import { getContext } from 'svelte'
+  import { getContext } from 'svelte'
   import { fade } from 'svelte/transition'
 
   import tipz from '../../utils/tipz'
 
   const { selectedEmoji, selectedEmojiData } = getContext('appState')
 
-  export let data;
-  export let tone;
-  export let emojiSize;
-  export let buttonHeight;
+  export let data
+  export let tone
+  export let emojiSize
+  export let buttonHeight
 
-  $: skinnedData = (!tone || !data.skins) ? data : data.skins[tone - 1];
+  $: skinnedData = !tone || !data.skins ? data : data.skins[tone - 1]
 
-  $: tipContent = skinnedData.shortcodes
-        .map(x => `:${x}:`)
-        .join(', ');
+  $: tipContent = (skinnedData.shortcodes || []).map((x) => `:${x}:`).join(', ')
 </script>
 
 <div class="item" transition:fade>
   <button
-    on:click={() => selectedEmoji.set(data.emoji)}
+    on:click="{() => selectedEmoji.set(data.emoji)}"
     class="emoji"
-    use:tipz="{{ content: tipContent  }}"
+    use:tipz="{{ content: tipContent }}"
     style="font-size: {emojiSize}px; height: {buttonHeight}px">
     {skinnedData.emoji}
   </button>

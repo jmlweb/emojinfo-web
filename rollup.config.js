@@ -34,8 +34,8 @@ export default {
       preprocess: autoPreprocess({
         postcss: true,
       }),
-      css: css => {
-        css.write('public/dist/bundle.css')
+      css: (css) => {
+        css.write('bundle.css')
       },
     }),
     // css({ output: 'public/dist/other.css' }),
@@ -47,7 +47,7 @@ export default {
     // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
-      dedupe: importee =>
+      dedupe: (importee) =>
         importee === 'svelte' || importee.startsWith('svelte/'),
     }),
     commonjs(),
